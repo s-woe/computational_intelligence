@@ -10,10 +10,10 @@ typedef struct TrainingData TrainingData;
 //struct with raw inputData
 typedef struct TrainingData
 {
-   double xvalue;
-   double yvalue;
-   double expout;
-   double bias;
+   double xvalue;  // the x value of training point
+   double yvalue;   // the y value of training point
+   double expout;  // expected output for this training point
+   double bias;   //bias for decision boundary
 
 }inputTraningDataptr;
 
@@ -32,12 +32,12 @@ TrainingData* Normalize(TrainingData store[1000],double maximum,size_t* count)
     return store;
 }
 
+//input data
 double ReadData(TrainingData Store[1000],size_t* count, double global_maximum)
 {
     char* input = (char*)malloc(sizeof(char)*32);
     char* delimiter;
     char endstring[]= "0,0,0";
-
 
     size_t j=0;
 
@@ -99,6 +99,7 @@ void TrainNeuron(TrainingData* store,size_t* count, double* weightlist, double m
 }
 char TestData(double* weights)
 {
+    // applies the test data on produced perceptron/ classifies data point in 1 or -1
     char* input = (char*)malloc(sizeof(char)*20);
     while(scanf("%s",input)!=EOF)
     {
